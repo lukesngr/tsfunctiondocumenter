@@ -1,6 +1,10 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import OpenAI from "./openai/OpenAiWrapper"
+import * as dotenv from 'dotenv';
+dotenv.config();
+const openAI = new OpenAI(process.env.API_KEY);
+const model = 'text-davinci-003';
+
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -14,9 +18,14 @@ export function activate(context: vscode.ExtensionContext) {
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
 	let disposable = vscode.commands.registerCommand('tsfunctiondocumenter.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from TSFunctionDocumenter!');
+		await openAI.generateText("Write three random words", model, 200)
+		.then(text => {
+			vscode.window.showInformationMessage(text);
+		})
+		.catch(error => {
+			console.log(error);
+		})
+		
 	});
 
 	context.subscriptions.push(disposable);
