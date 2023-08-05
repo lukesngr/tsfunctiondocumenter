@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import OpenAI from "./openai/OpenAiWrapper"
 import * as dotenv from 'dotenv';
 dotenv.config();
-const openAI = new OpenAI(process.env.API_KEY);
+const openAI = new OpenAI("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");
 const model = 'text-davinci-003';
 
 
@@ -18,17 +18,13 @@ export function activate(context: vscode.ExtensionContext) {
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
 	let disposable = vscode.commands.registerCommand('tsfunctiondocumenter.helloWorld', async () => {
-		if(process.env.API_KEY) {
-			await openAI.generateText("Write three random words", model, 200)
-			.then(text => {
-				vscode.window.showInformationMessage(text);
-			})
-			.catch(error => {
-				console.log(error);
-			})
-		}else{
-			console.log(process.env)
-		}
+		await openAI.generateText("Write three random words", model, 200)
+		.then(text => {
+			vscode.window.showInformationMessage(text);
+		})
+		.catch(error => {
+			console.log(error);
+		})
 	});
 
 	context.subscriptions.push(disposable);
