@@ -17,7 +17,7 @@ export function activate(context: vscode.ExtensionContext) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('tsfunctiondocumenter.helloWorld', () => {
+	let disposable = vscode.commands.registerCommand('tsfunctiondocumenter.helloWorld', async () => {
 		await openAI.generateText("Write three random words", model, 200)
 		.then(text => {
 			vscode.window.showInformationMessage(text);
@@ -25,7 +25,6 @@ export function activate(context: vscode.ExtensionContext) {
 		.catch(error => {
 			console.log(error);
 		})
-		
 	});
 
 	context.subscriptions.push(disposable);
