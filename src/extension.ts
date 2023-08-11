@@ -1,18 +1,18 @@
 import * as vscode from 'vscode';
-import OpenAI from "./openai/ModelQuerier"
+import OpenAI from "./ModelQuerier"
 import * as dotenv from 'dotenv';
+import outputDocToNewEditorTab from './outputDocToNewEditorTab';
 dotenv.config();
 const openAI = new OpenAI("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");
-const testFunction = "function printHello(): void {console.log('Hello!');}"
 
 export function activate(context: vscode.ExtensionContext) {
 	console.log('Congratulations, your extension "tsfunctiondocumenter" is now active!');
 
-	let disposable = vscode.commands.registerCommand('tsfunctiondocumenter.helloWorld', async () => {
-		await openAI.documentFunction(testFunction)
-		.then(text => {
-			vscode.window.showInformationMessage(text);
-			console.log(text);
+	let disposable = vscode.commands.registerCommand('tsfunctiondocumenter.documentPageFunctions', async () => {
+		let code = getCodeFromOpenWindow();
+		await openAI.documentFunction(code)
+		.then(documentation => {
+			outputDocToNewEditorTab(documentation);
 		})
 		.catch(error => {
 			console.log(error);
