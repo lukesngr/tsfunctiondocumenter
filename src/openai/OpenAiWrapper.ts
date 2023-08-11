@@ -13,6 +13,7 @@ export default class OpenAI {
                 temperature,
             });
             console.log(`request cost: ${res.data.usage.total_tokens} tokens`);
+            console.log(res);
             return res.data.choices[0].text;
         } catch (error) {
             throw error;
