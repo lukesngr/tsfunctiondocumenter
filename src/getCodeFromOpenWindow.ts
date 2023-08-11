@@ -1,3 +1,3 @@
-function getCodeFromOpenWindow(): string {
+export default function getCodeFromOpenWindow(): string {
     return "function printHello(): void {console.log('Hello!');}";
 }

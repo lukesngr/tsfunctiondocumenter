@@ -14,8 +14,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "tsfunctiondocumenter.helloWorld",
-        "title": "Hello World"
+        "command": "tsfunctiondocumenter.documentPageFunctions",
+        "title": "Document current window functions"
       }
     ]
   },
