@@ -25,9 +25,7 @@ export default class OpenAI {
                 frequency_penalty: 0,
                 presence_penalty: 0,
               });;
-            console.log(`request cost: ${response.data.usage.total_tokens} tokens`);
-            console.log(response);
-            return response.data.choices[0].text;
+            return response.data.choices[0].message?.content;
         } catch (error) {
             throw error;
         }
