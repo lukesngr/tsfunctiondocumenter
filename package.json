@@ -15,9 +15,21 @@
     "commands": [
       {
         "command": "tsfunctiondocumenter.documentPageFunctions",
-        "title": "Document current window functions"
+        "title": "Generate Documentation"
       }
-    ]
+    ],
+      "menus": {
+        "explorer/context": [{
+            "when": "resourceLangId == typescript",
+            "command": "tsfunctiondocumenter.documentPageFunctions",
+            "group": "tsfunctiondocumenterGroup"
+      }],
+      "editor/context": [{
+        "when": "resourceLangId == typescript",
+        "command": "tsfunctiondocumenter.documentPageFunctions",
+        "group": "tsfunctiondocumenterGroup"
+      }]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
