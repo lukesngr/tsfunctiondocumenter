@@ -29,7 +29,17 @@
         "command": "tsfunctiondocumenter.documentPageFunctions",
         "group": "tsfunctiondocumenterGroup"
       }]
-    }
+    },
+    "configuration": {
+          "title": "Typescript Function Documenter",
+          "properties": {
+              "tsfunctiondocumenter.apiKey": {
+                  "type": "string",
+                  "default": "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",
+                  "description": "API key used in this program"
+              }
+          }
+      }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
