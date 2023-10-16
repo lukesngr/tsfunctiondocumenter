@@ -19,6 +19,12 @@ export function activate(context: vscode.ExtensionContext) {
     let disposable = vscode.commands.registerCommand('tsfunctiondocumenter.documentPageFunctions', async () => {
         try {
             let code = getCodeFromOpenWindow();
+
+            if (!code) {
+                vscode.window.showWarningMessage("No code found or selected in the open window.");
+                return;
+            }
+            
             const documentation = await openAI.documentFunction(code);
             outputDocToNewEditorTab(documentation);
         } catch (error) {
