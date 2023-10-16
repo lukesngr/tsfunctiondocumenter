@@ -35,7 +35,7 @@
           "properties": {
               "tsfunctiondocumenter.apiKey": {
                   "type": "string",
-                  "default": "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",
+                  "default": "<OpenAPI key>",
                   "description": "API key used in this program"
               }
           }

@@ -10,7 +10,7 @@ export function activate(context: vscode.ExtensionContext) {
     let apiKey: string | undefined = config.apiKey;
     
     if (!apiKey) {
-        vscode.window.showErrorMessage("API Key for tsfunctiondocumenter is not set!");
+        vscode.window.showErrorMessage("API Key for tsfunctiondocumenter is not set. Please set it in vscode settings");
         return;
     }
 
