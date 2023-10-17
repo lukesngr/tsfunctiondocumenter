@@ -32,8 +32,12 @@ suite('Extension Test Suite', () => {
 
             assert.ok(true);
 
-        } catch (error) {
-            assert.ok(false, `Error occurred: ${error.message}`);
+        } catch (error: unknown) {
+            if(error instanceof Error) {
+                assert.ok(false, `Error occurred: ${error.message}`);
+            }else{
+                assert.ok(false, `An unexpected error occurred`);
+            }
         }
     });
 });
