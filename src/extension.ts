@@ -24,12 +24,18 @@ export function activate(context: vscode.ExtensionContext) {
                 vscode.window.showWarningMessage("No code found or selected in the open window.");
                 return;
             }
+
+            let author: string | undefined = vscode.workspace.getConfiguration('tsfunctiondocumenter').author;
             
-            const documentation = await openAI.documentFunction(code);
-            outputDocToNewEditorTab(documentation);
+            if(author) {
+                const documentation = await openAI.documentFunction(code, author);
+                outputDocToNewEditorTab(documentation);
+            }
+            
+           
         } catch (error) {
             console.error(error);
-            vscode.window.showErrorMessage("An error occurred while documenting the functions.");
+            vscode.window.showErrorMessage("An error occurred while documenting the functions. Please ");
         }
     });
 
