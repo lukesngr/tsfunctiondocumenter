@@ -5,14 +5,14 @@ export default class OpenAI {
         this.openai = new OpenAIApi(new Configuration({ apiKey }));
     }
 
-    async documentFunction(tsFunction: string, author: string): Promise<string> {
+    async queryModel(tsFunction: string, question: string): Promise<string> {
         try {
             const response = await this.openai.createChatCompletion({
                 model: "gpt-3.5-turbo",
                 messages: [
                   {
                     "role": "system",
-                    "content": "Can you document the following in a manner acceptable for JsDoc and add a author field with name "+author
+                    "content": question
                   },
                   {
                     "role": "user",
