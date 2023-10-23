@@ -15,31 +15,51 @@
     "commands": [
       {
         "command": "tsfunctiondocumenter.documentPageFunctions",
-        "title": "Generate Documentation"
+        "title": "Generate JSDoc Documentation"
+      },
+      {
+        "command": "tsfunctiondocumenter.toDocumentationHTML",
+        "title": "Generate JSDoc HTML"
+      },
+      {
+        "command": "tsfunctiondocumenter.bigOApprox",
+        "title": "Output Big O Approximation"
       }
     ],
-      "menus": {
-        "explorer/context": [{
-            "when": "resourceLangId == typescript",
-            "command": "tsfunctiondocumenter.documentPageFunctions",
-            "group": "tsfunctiondocumenterGroup"
-      }],
-      "editor/context": [{
-        "when": "resourceLangId == typescript",
-        "command": "tsfunctiondocumenter.documentPageFunctions",
-        "group": "tsfunctiondocumenterGroup"
-      }]
+    "menus": {
+      "editor/context": [
+        {
+          "when": "resourceLangId == typescript",
+          "command": "tsfunctiondocumenter.documentPageFunctions",
+          "group": "tsfunctiondocumenterGroup"
+        },
+        {
+          "when": "resourceLangId == typescript",
+          "command": "tsfunctiondocumenter.toDocumentationHTML",
+          "group": "tsfunctiondocumenterGroup"
+        },
+        {
+          "when": "resourceLangId == typescript",
+          "command": "tsfunctiondocumenter.bigOApprox",
+          "group": "tsfunctiondocumenterGroup"
+        }
+      ]
     },
     "configuration": {
-          "title": "Typescript Function Documenter",
-          "properties": {
-              "tsfunctiondocumenter.apiKey": {
-                  "type": "string",
-                  "default": "<OpenAPI key>",
-                  "description": "API key used in this program"
-              }
-          }
+      "title": "Typescript Function Documenter",
+      "properties": {
+        "tsfunctiondocumenter.apiKey": {
+          "type": "string",
+          "default": "<OpenAPI key>",
+          "description": "API key used in this program"
+        },
+        "tsfunctiondocumenter.author": {
+          "type": "string",
+          "default": "<Author>",
+          "description": "author used in this program"
+        }
       }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
@@ -65,11 +85,13 @@
     "mocha": "^10.2.0",
     "ts-loader": "^9.4.3",
     "typescript": "^5.1.3",
+    "vscode-test": "^1.6.1",
     "webpack": "^5.85.0",
     "webpack-cli": "^5.1.1"
   },
   "dependencies": {
     "dotenv": "^16.3.1",
-    "openai": "^3.3.0"
+    "openai": "^3.3.0",
+    "vsce": "^2.15.0"
   }
 }
